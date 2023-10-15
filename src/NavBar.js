@@ -14,6 +14,7 @@ const NavBar = ({accounts, setAccounts}) => {
             })
             setAccounts(accounts)
         }
+        console.log(isConnected)
     }
 
     return (

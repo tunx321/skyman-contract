@@ -9,7 +9,7 @@ deploy:
 
 verify:
 ifdef address
-	npx hardhat verify --network ${NETWORK} address ${OWNER}
+	npx hardhat verify --network ${NETWORK} ${address} ${OWNER}
 else
 	echo "need to specify which contract to verify using address=value"
 endif

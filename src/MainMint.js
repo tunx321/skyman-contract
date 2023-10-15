@@ -3,7 +3,7 @@ import SkymanABI from "./Skyman.json"
 import { Box, Button, Flex, Input, Text} from '@chakra-ui/react';
 const ethers = require("ethers");
 
-const skymanAddress = "0x45c8C9Fb241F31F444CDd16Ebed460D3e3331326";
+const skymanAddress = "0x9A1d71a43c0A9C18bE2bADd40b80c8587344459D";
 
 const MainMint = ({accounts, setAccounts}) =>{
     const isConnected = Boolean(accounts[0])
@@ -24,8 +24,11 @@ const MainMint = ({accounts, setAccounts}) =>{
 
             try {
                 console.log(accounts[0], {uri})
+                const uriString = { uri }
+                const address = accounts[0]
+                setUri('')
                 const options = {value: "50000000000000000"}
-                const response = await contract.payToMint(accounts[0], {uri}, options)
+                const response = await contract.safeMint(address, uriString, options)
                 console.log("response: ", response)
                 
             } catch (error) {
@@ -45,12 +48,12 @@ const MainMint = ({accounts, setAccounts}) =>{
                 fontFamily="VT323"
                 textShadow="0 2px 2px #000000"
                 
-                >It's 2023. Discover a captivating array of unique NFT animals. Tungatov Almat, Alizhan Umbetov, Aiym Amangeldiyeva</Text>
+                >It's 2023. Each mint costs 0.005 ETH. Discover a captivating array of unique NFT animals. Tungatov Almat, Alizhan Umbetov, Aiym Amangeldiyeva</Text>
             </div>
             {isConnected ? (
                 <Flex className="create" align="center" justify="cetner">
+                    
                     <form>
-                        
                         <Input
                         fontFamily="inherit"
                         width="500px"
@@ -60,15 +63,7 @@ const MainMint = ({accounts, setAccounts}) =>{
                         required 
                         value={uri} 
                         onChange={(e)=> setUri(e.target.value)}/>
-                    </form> 
-                    
-                    
-                
-                </Flex>
-            ):(
-                <p>You must be connected to Mint.</p>
-            )}
-            <Button 
+                        <Button 
                      backgroundColor="#D6517D" 
                      borderRadius="5px"
                      boxShadow="0px 2px 2px 1px #0F0F0F"
@@ -78,6 +73,16 @@ const MainMint = ({accounts, setAccounts}) =>{
                      padding="15px"
                      marginTop="10px"
                      onClick={handleMint}>Mint</Button>
+                    </form> 
+                    
+                    
+                
+                </Flex>
+                
+            ):(
+                <p>You must be connected to Mint.</p>
+            )}
+            
             </Box>
         </Flex>
     )

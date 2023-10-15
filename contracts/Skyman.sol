@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+
 contract Skyman is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Pausable, Ownable {
     uint256 private _nextTokenId;
     mapping(string => bool) existingURIs;
@@ -16,30 +17,12 @@ contract Skyman is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Pausable, O
         Ownable(initialOwner)
     {}
 
-    function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://";
-    }
 
     function isContentOwned(string memory uri) public view returns (bool) {
         return existingURIs[uri] == true;
     }
 
-    function payToMint(
-        address recipient,
-        string memory metadataURI
-    ) public payable returns (uint256) {
-        require(existingURIs[metadataURI] != true, 'NFT already minted!');
-        require (msg.value >= 0.05 ether, 'Need to pay up!');
 
-        uint256 newItemId = _nextTokenId;
-        _nextTokenId++;
-        existingURIs[metadataURI] = true;
-
-        _mint(recipient, newItemId);
-        _setTokenURI(newItemId, metadataURI);
-
-        return newItemId;
-    }
 
     function pause() public onlyOwner {
         _pause();
@@ -49,7 +32,9 @@ contract Skyman is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Pausable, O
         _unpause();
     }
 
-    function safeMint(address to, string memory uri) public onlyOwner{
+    function safeMint(address to, string memory uri) public payable{
+        require (msg.value >= 0.05 ether, 'Need to pay up!'); 
+        require(existingURIs[uri] != true, 'NFT already minted!');    
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
