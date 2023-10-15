@@ -23,12 +23,12 @@ const MainMint = ({accounts, setAccounts}) =>{
             )
 
             try {
-                console.log(accounts[0], {uri})
                 const uriString = { uri }
                 const address = accounts[0]
                 setUri('')
+                console.log("AAA: ", uriString.uri, address)
                 const options = {value: "50000000000000000"}
-                const response = await contract.safeMint(address, uriString, options)
+                const response = await contract.safeMint(address, uriString.uri, options)
                 console.log("response: ", response)
                 
             } catch (error) {

@@ -33,7 +33,7 @@ contract Skyman is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Pausable, O
     }
 
     function safeMint(address to, string memory uri) public payable{
-        require (msg.value >= 0.05 ether, 'Need to pay up!'); 
+        require (msg.value >= 0.005 ether, 'Need to pay up!'); 
         require(existingURIs[uri] != true, 'NFT already minted!');    
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
