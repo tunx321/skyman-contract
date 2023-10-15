@@ -17,3 +17,7 @@ endif
 
 run:
 	npm run start
+
+
+ctest:
+	npx hardhat test

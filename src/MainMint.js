@@ -3,7 +3,7 @@ import SkymanABI from "./Skyman.json"
 import { Box, Button, Flex, Input, Text} from '@chakra-ui/react';
 const ethers = require("ethers");
 
-const skymanAddress = "0x6582b68894c18464eCC70C2e657bFd77619E079f";
+const skymanAddress = "0xe298d7216146091801b2dA3642036a7b0e30839D";
 
 const MainMint = ({accounts, setAccounts}) =>{
     const isConnected = Boolean(accounts[0])
@@ -27,7 +27,7 @@ const MainMint = ({accounts, setAccounts}) =>{
                 const address = accounts[0]
                 setUri('')
                 console.log("AAA: ", uriString.uri, address)
-                const options = {value: "50000000000000000"}
+                const options = {value: "5000000000000000"}
                 const response = await contract.safeMint(address, uriString.uri, options)
                 console.log("response: ", response)
                 

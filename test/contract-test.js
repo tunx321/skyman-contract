@@ -23,8 +23,8 @@ describe("Skyman", function(){
     })
 
 
-    it("should implement safe mint function", async function() {
-      const mintTx = await myContractDeployed.connect(addr1).safeMint(addr1.address, "QmQAA7CqDZwrhEXTchTfPuNzdmn8yXJHhAqX3U4wyeKz8i/4.json")
+    it("should implement mint function that increase balance of addr1 to 1", async function() {
+      const mintTx = await myContractDeployed.connect(addr1).safeMint(addr1.address, "QmQAA7CqDZwrhEXTchTfPuNzdmn8yXJHhAqX3U4wyeKz8i/4.json", {value: "5000000000000000"})
       await mintTx.wait()
       expect(await myContractDeployed.balanceOf(addr1.address)).to.equal(1)
     })
