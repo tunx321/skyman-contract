@@ -9,27 +9,31 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Skyman is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Pausable, Ownable {
     uint256 private _nextTokenId;
-    mapping(string => uint8) existingURIs;
-
+    mapping(string => bool) existingURIs;
+    
     constructor(address initialOwner)
         ERC721("Skyman", "SKA")
         Ownable(initialOwner)
     {}
 
+    function _baseURI() internal pure override returns (string memory) {
+        return "ipfs://";
+    }
+
     function isContentOwned(string memory uri) public view returns (bool) {
-        return existingURIs[uri] == 1;
+        return existingURIs[uri] == true;
     }
 
     function payToMint(
         address recipient,
         string memory metadataURI
     ) public payable returns (uint256) {
-        require(existingURIs[metadataURI] != 1, 'NFT already minted!');
+        require(existingURIs[metadataURI] != true, 'NFT already minted!');
         require (msg.value >= 0.05 ether, 'Need to pay up!');
 
         uint256 newItemId = _nextTokenId;
         _nextTokenId++;
-        existingURIs[metadataURI] = 1;
+        existingURIs[metadataURI] = true;
 
         _mint(recipient, newItemId);
         _setTokenURI(newItemId, metadataURI);

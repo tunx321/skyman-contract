@@ -45,25 +45,30 @@ const MainMint = ({accounts, setAccounts}) =>{
                 fontFamily="VT323"
                 textShadow="0 2px 2px #000000"
                 
-                >It's 2023. Almat Tungatov Alizhan and Aiym</Text>
+                >It's 2023. Discover a captivating array of unique NFT animals. Tungatov Almat, Alizhan Umbetov, Aiym Amangeldiyeva</Text>
             </div>
             {isConnected ? (
                 <Flex className="create" align="center" justify="cetner">
                     <form>
-                        <label>URI: </label>
+                        
                         <Input
                         fontFamily="inherit"
-                        width="100px"
+                        width="500px"
                         height="40px"
                         textAlign="center"
-                        paddingLeft="19px"
-                        paddingTop="10px"
                         type="text" 
                         required 
                         value={uri} 
                         onChange={(e)=> setUri(e.target.value)}/>
                     </form> 
-                    <Button 
+                    
+                    
+                
+                </Flex>
+            ):(
+                <p>You must be connected to Mint.</p>
+            )}
+            <Button 
                      backgroundColor="#D6517D" 
                      borderRadius="5px"
                      boxShadow="0px 2px 2px 1px #0F0F0F"
@@ -73,11 +78,6 @@ const MainMint = ({accounts, setAccounts}) =>{
                      padding="15px"
                      marginTop="10px"
                      onClick={handleMint}>Mint</Button>
-                
-                </Flex>
-            ):(
-                <p>You must be connected to Mint.</p>
-            )}
             </Box>
         </Flex>
     )
