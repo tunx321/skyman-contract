@@ -1,7 +1,6 @@
 import { useState } from "react";
+import SkymanABI from "./Skyman.json"
 const ethers = require("ethers");
-import SkymanABI from "/home/almat/CODE/dapp/artifacts/contracts/Skyman.sol/Skyman.json"
-
 
 const skymanAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
@@ -20,7 +19,7 @@ const MainMint = ({accounts, setAccounts}) =>{
 
             try {
                 const response = await contract.payToMint("")
-                consolse.log("response: ", response)
+                console.log("response: ", response)
                 
             } catch (error) {
                 console.log("erorr: ", error)
@@ -37,7 +36,7 @@ const MainMint = ({accounts, setAccounts}) =>{
                     <div>
                         <input type="text" placeholder="URI"/>
                     </div>
-                    <button onClick={handleMint}></button>
+                    <button onClick={handleMint}>Mint</button>
                 </div>
             ):(
                 <p>You must be connected to Mint.</p>
@@ -46,3 +45,5 @@ const MainMint = ({accounts, setAccounts}) =>{
     )
 
 }
+
+export default MainMint;
