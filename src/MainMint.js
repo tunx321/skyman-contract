@@ -3,7 +3,7 @@ import SkymanABI from "./Skyman.json"
 import { Box, Button, Flex, Input, Text} from '@chakra-ui/react';
 const ethers = require("ethers");
 
-const skymanAddress = "0x9A1d71a43c0A9C18bE2bADd40b80c8587344459D";
+const skymanAddress = "0x6582b68894c18464eCC70C2e657bFd77619E079f";
 
 const MainMint = ({accounts, setAccounts}) =>{
     const isConnected = Boolean(accounts[0])
