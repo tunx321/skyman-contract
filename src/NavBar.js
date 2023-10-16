@@ -22,10 +22,10 @@ const NavBar = ({accounts, setAccounts}) => {
         
 
         <Flex justify="space-around" width="40%" padding="0 75px">
-            <Link href="https://www.facebook.com">
+            <Link href="https://www.instagram.com/tungatov13/">
                 <Image src={Instagram} boxSize="42px" margin="0 15px" />
             </Link>
-            <Link href="https://www.twitter.com">
+            <Link href="https://t.me/tung1xxx">
                 <Image src={Telegram} boxSize="42px" margin="0 15px" />
             </Link>
             <Link href="https://www.gmail.com">
